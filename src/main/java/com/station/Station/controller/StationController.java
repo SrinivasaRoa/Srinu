@@ -21,11 +21,6 @@ public class StationController {
 	private StationRepository stationRepository;
 	
 	
-	@RequestMapping(value = "/getStationSample", method = RequestMethod.GET)
-	@ResponseBody
-	public Station getStationSample(){
-		return new Station();
-	}
 	
 	@RequestMapping(value = "/saveOrUpdateStation", method = RequestMethod.POST)
 	@ResponseBody
@@ -52,10 +47,10 @@ public class StationController {
 		return stationS;
 	}
 	
-	@RequestMapping(value = "/searchByHDEnabled", method = RequestMethod.GET)
+	@RequestMapping(value = "/searchByHDEnabled", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Station> findById(@RequestParam Boolean hdEnabled){
-		List<Station> stationList = stationRepository.findByHdEnabled(hdEnabled);
+	public List<Station> findByHDEnabled(@RequestBody Station station){
+		List<Station> stationList = stationRepository.findByHdEnabled(station.getHdEnabled());
 		return stationList;
 	}
 	
